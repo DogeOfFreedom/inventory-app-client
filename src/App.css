@@ -1,7 +1,8 @@
 :root {
   --margin: 50px;
   --max-width: 1200px;
-  --border: 5px double black
+  --border: 5px double black;
+  --card-width: 200px;
 }
 
 body {
@@ -16,10 +17,9 @@ body {
 #root {
   width: 100%;
   max-width: var(--max-width);
-  margin-top: 25px;
-  height: 1000px;
+  padding: 25px 0px;
   display: grid;
-  grid-template: 125px 1fr / 1fr 3fr;
+  grid-template: 125px 1fr / 1fr 5fr;
   color: black;
   font-family: Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -46,17 +46,203 @@ nav {
   border-left: var(--border);
   border-right: var(--border);
   border-bottom: var(--border);
+  display: flex;
+  flex-direction: column;
 }
 
-.content {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-  border-right: var(--border);
-  border-bottom: var(--border);
+.navItem {
+  box-sizing: border-box;
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px;
+  /* align-items: center; */
+  border: 5px double black;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: rgb(196, 196, 196);
+  font-weight: bold;
+}
+
+.btnContainer {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.navBtn {
+  margin: 0px 10px;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+  text-align: start;
+}
+
+.navBtn:hover {
+  background-color: rgb(196, 196, 196);
+  font-weight: bold;
 }
 
 @media (max-width: var(--max-width)) {
   #root {
     width: 100%;
   }
+}
+
+/* Loading Wheel */
+.loadingWheel {
+  --size: 50px;
+  --border: 5px;
+  
+  width: var(--size);
+  height: var(--size);
+  border: var(--border) solid rgba(0,0,0,0);
+  border-top: var(--border) solid #3498db; /* Blue */
+  border-radius: 50%;
+  animation: 0.5s spinner infinite linear;  
+}
+
+@keyframes spinner {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg)
+  }
+}
+
+.contentContainer {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  border-right: var(--border);
+  border-bottom: var(--border);
+  padding: 25px 0px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--card-width));
+  gap: 10px;
+  column-gap: 15px;;
+  justify-content: center;
+
+}
+
+/* Card */
+.card {
+  box-shadow: 0px 2px 2px rgb(175, 175, 175);
+  width: var(--card-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.card a {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px;
+}
+
+.card a:hover {
+  background-color: white;
+}
+
+.cardImage {
+  width: 80%;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template: 1fr 3fr / 3fr 1fr;
+  row-gap: 10px;
+}
+
+.name {
+  grid-area: 1 / 1 / span 1 / span 1;
+  font-weight: bold;
+  padding: 0px 10px;
+}
+
+.price {
+  grid-area: 1 / 2 / span 1 / span 1;
+  padding: 0px 10px;
+}
+
+.description {
+  grid-area: 2 / 1 / span 1 / span 2;
+  padding: 0px 10px;
+}
+
+.stockWarningMsg {
+  color: rgb(223, 0, 0);
+  margin-bottom: 10px;
+}
+
+/* Item details page */
+.itemContainer {
+  padding: 25px;
+  border: var(--border);
+  grid-area: 1/1/3/3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.itemDetailsContainer {
+  grid-area: 1/1/2/2;
+  display: flex;
+  flex-direction: column;
+  padding-left: 50px;
+  font-size: 18px;
+}
+
+.top {
+  h2 {
+    margin-bottom: 0px;
+  }
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px;
+  gap: 5px;
+}
+
+.itemContainer button {
+  width: 100px;
+  height: 50px;
+  margin-bottom: 10px;
+  box-shadow: 0px 2px 2px rgb(184, 184, 184);
+  font-size: 18px;
+  cursor: pointer
+}
+
+.generalBtn {
+  border: var(--border);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.deleteBtn {
+  background-color: rgb(233, 94, 94);
+  color: white;
+  border: 0px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.itemImg {
+  grid-area: 1/2/2/3;
+  width: 80%;
+  height: auto;
+}
+
+dialog div button.deleteBtn {
+  margin-right: 5px;
 }
