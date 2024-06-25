@@ -9,10 +9,13 @@ export default function ItemList() {
   const { category } = useParams();
   const [items, setItems] = useState([]);
 
-  const url = import.meta.env.VITE_HOST_NAME || "http://localhost:3000";
+  const hostname = import.meta.env.VITE_HOST_NAME || "http://localhost:3000";
   useEffect(() => {
     const fetchData = async () => {
-      const itemsData = await fetch(`${url}/items`);
+      const url = category
+        ? `${hostname}/${category}/items`
+        : `${hostname}/items`;
+      const itemsData = await fetch(url);
       const itemsProcessed = await JSON.parse(await itemsData.json());
       setItems(itemsProcessed);
       setLoading(false);
@@ -23,7 +26,7 @@ export default function ItemList() {
     } catch (e) {
       setError(e);
     }
-  }, []);
+  }, [category]);
 
   if (loading) return <LoadingWheel />;
   if (error) return <ErrorComponent />;
