@@ -3,6 +3,8 @@ import App from "./App";
 import Error from "./Error";
 import ItemList from "./ItemList";
 import Item from "./Item";
+import Redirect from "./Redirect";
+import ItemForm from "./forms/ItemForm";
 
 const router = createBrowserRouter([
   {
@@ -21,8 +23,16 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "/reset",
+    element: <Redirect />,
+  },
+  {
     path: "/item/:id",
     element: <Item />,
+  },
+  {
+    path: "/item/:id/update",
+    element: <ItemForm method="PUT" />,
   },
 ]);
 

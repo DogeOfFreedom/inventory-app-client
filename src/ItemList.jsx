@@ -33,18 +33,26 @@ export default function ItemList() {
       {items.map((item) => (
         <div key={item._id} className="card">
           <Link to={`/item/${item._id}`}>
-            <img className="cardImage" src={item.imgURL} alt={item.name} />
+            <img
+              className={
+                item.quantityInStock == 0 ? "cardImage outOfStock" : "cardImage"
+              }
+              src={item.imgURL}
+              alt={item.name}
+            />
           </Link>
           <div className="detailsGrid">
             <span className="name">{item.name}</span>
             <span className="price">${item.price}</span>
             <span className="description">{item.description}</span>
           </div>
-          {item.quantityInStock < 20 && (
+          {item.quantityInStock == 0 ? (
+            <span className="stockWarningMsg">Out of Stock</span>
+          ) : item.quantityInStock < 20 ? (
             <span className="stockWarningMsg">
               Only {item.quantityInStock} Left in Stock
             </span>
-          )}
+          ) : null}
         </div>
       ))}
     </>

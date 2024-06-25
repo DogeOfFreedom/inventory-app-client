@@ -3,6 +3,8 @@
   --max-width: 1200px;
   --border: 5px double black;
   --card-width: 200px;
+
+  --warning: rgb(233, 94, 94);
 }
 
 body {
@@ -91,6 +93,15 @@ a:hover {
   font-weight: bold;
 }
 
+.resetBtn {
+  margin-top: 25px;
+}
+
+.resetBtn:hover {
+  color: white;
+  background-color: var(--warning);
+}
+
 @media (max-width: var(--max-width)) {
   #root {
     width: 100%;
@@ -130,7 +141,10 @@ a:hover {
   gap: 10px;
   column-gap: 15px;;
   justify-content: center;
+}
 
+.outOfStock {
+  opacity: 0.4;
 }
 
 /* Card */
@@ -154,7 +168,11 @@ a:hover {
 }
 
 .cardImage {
-  width: 80%;
+  --size: 150px;
+
+  width: var(--size);
+  height: var(--size);
+  object-fit: cover;
 }
 
 .detailsGrid {
@@ -220,21 +238,26 @@ a:hover {
   margin-bottom: 10px;
   box-shadow: 0px 2px 2px rgb(184, 184, 184);
   font-size: 18px;
-  cursor: pointer
+}
+
+.bigBtn {
+  box-shadow: 0px 2px 0px rgb(168, 168, 168);
 }
 
 .generalBtn {
-  border: var(--border);
   border-radius: 10px;
+  background-color: white;
   padding: 10px;
+  cursor: pointer;
 }
 
 .deleteBtn {
-  background-color: rgb(233, 94, 94);
+  background-color: var(--warning);
   color: white;
   border: 0px;
   border-radius: 10px;
   padding: 10px;
+  cursor: pointer;
 }
 
 .itemImg {
@@ -245,4 +268,41 @@ a:hover {
 
 dialog div button.deleteBtn {
   margin-right: 5px;
+}
+
+/* Form */
+.formContainer {
+  padding: 25px;
+  border: var(--border);
+  grid-area: 1/1/3/3;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formInputContainer {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+textarea {
+  resize: none;
+}
+
+.formButtonContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.submitBtn {
+  background-color: #3498db;
+  color:white;
+}
+
+.errorMsg {
+  color: red;
+  margin: 0px;
 }

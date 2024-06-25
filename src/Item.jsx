@@ -71,10 +71,10 @@ export default function Item() {
           <div>
             <h2>Delete Item</h2>
             <p>Are you sure you want to delete this item?</p>
-            <button className="deleteBtn" onClick={deleteItem}>
+            <button className="bigBtn deleteBtn" onClick={deleteItem}>
               Delete
             </button>
-            <button className="generalBtn" onClick={closeModal}>
+            <button className="bigBtn generalBtn" onClick={closeModal}>
               Cancel
             </button>
           </div>
