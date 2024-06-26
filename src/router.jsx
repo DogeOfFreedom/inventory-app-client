@@ -5,6 +5,7 @@ import ItemList from "./ItemList";
 import Item from "./Item";
 import Redirect from "./Redirect";
 import ItemForm from "./forms/ItemForm";
+import CategoryForm from "./forms/CategoryForm";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,18 @@ const router = createBrowserRouter([
   {
     path: "/reset",
     element: <Redirect />,
+  },
+  {
+    path: "/category/create",
+    element: <CategoryForm method="POST" />,
+  },
+  {
+    path: "/category/:name/update",
+    element: <CategoryForm method="PUT" />,
+  },
+  {
+    path: "/item/create",
+    element: <ItemForm method="POST" />,
   },
   {
     path: "/item/:id",

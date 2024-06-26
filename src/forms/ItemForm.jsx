@@ -6,7 +6,7 @@ import Error from "../Error";
 
 export default function ItemForm({ method }) {
   const { id } = useParams();
-  const title = method === "UPDATE" ? "Update Item" : "Add New Item";
+  const title = method === "PUT" ? "Update Item" : "Add New Item";
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,6 +45,8 @@ export default function ItemForm({ method }) {
         setCatagory(itemProcessed.category);
         setPrice(itemProcessed.price);
         setQuantityInStock(itemProcessed.quantityInStock);
+      } else {
+        setCatagory(categoriesProcessed[0].name);
       }
 
       setLoading(false);
@@ -63,8 +65,6 @@ export default function ItemForm({ method }) {
   const submit = async (e) => {
     setLoading(true);
     e.preventDefault();
-
-    console.log(Number(price));
 
     let obj = {
       id,
@@ -180,7 +180,12 @@ export default function ItemForm({ method }) {
         </div>
         <div className="formInputContainer">
           <label htmlFor="img">Item Image</label>
-          <input onChange={handleFileInputChange} name="img" type="file" />
+          <input
+            onChange={handleFileInputChange}
+            name="img"
+            type="file"
+            required
+          />
         </div>
         {message && <p className="errorMsg">{message}</p>}
         <div className="formButtonContainer">
